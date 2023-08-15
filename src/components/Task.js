@@ -1,22 +1,35 @@
-import React from "react";
+import React, { useState } from "react";
 import './Task.css';
 
 const Task=()=>{
 
     const arr = [
-        {value:'First Task'},
-        {value:'Second Task'},
-        {value:'Third Task'}
+        'First Task',
+        'Second Task',
+        'Third Task'
     ]
+
+    const[newState, setState]=useState(arr)
+
+    let str = []
+    const inputHandler = (event)=>{
+        str = [event.target.value]
+    }
+
+    const submitHandler = (event) =>{
+        event.preventDefault()
+
+        setState( newState.concat(str) )
+    }
 
     return(
         <div className="tasks">
-        {arr.map(t=>{
-            return <h2 className="each-task">{t.value}</h2>
+        {newState.map(t=>{
+            return <h2>{t}</h2>
         })}
         <form>
-            <input type="text" id='input' name="input" placeholder="Enter Task"/>
-            <button>Add Task</button>
+            <input type="text" onChange={inputHandler} name="input" placeholder="Enter Task"/>
+            <button onClick={submitHandler}>Add Task</button>
         </form>
         </div>
     )
