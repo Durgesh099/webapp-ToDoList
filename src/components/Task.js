@@ -23,7 +23,6 @@ const Task=()=>{
 
         document.getElementById('input').value = ''
     }
-    
 
     return(
         <div className="tasks">
@@ -32,14 +31,17 @@ const Task=()=>{
                 return(
                     <React.Fragment>
                     <h2 className="h2">
-                        <input type="checkbox" className="cbf"/>
-                        <span className="text">{t}</span>
+                        <input id='checkbox' type="checkbox" className="cbf"/>
+                        <label for='checkbox' className="text">{t}</label>
+                        {console.log(document.getElementById(''))}
                     </h2>
                     </React.Fragment>
                 )
             })}
+            <div className="insertbox">
             <input id="input" className="input" type="text" onChange={inputHandler} name="input" placeholder="Enter Task"/>
             <button className="btn" onClick={submitHandler}>Add Task</button>
+            </div>
         </form>
         </div>
     )
