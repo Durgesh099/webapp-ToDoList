@@ -7,8 +7,8 @@
 }
 
 .form li{
-    display: inline-block;
-    margin-top: 15px;
+    margin-top: 30px;
+    list-style-type: none;
 }
 
 .form input{

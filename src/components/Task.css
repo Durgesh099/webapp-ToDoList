@@ -26,30 +26,8 @@
     height: 20px;
 }
 
-.input{
-    height: 27.3px;
-    width: 300px;
-    border: 3px solid rgb(171, 171, 246);;
-}
 
-.insertbox{
-    display: flex;
-}
-
-.btn{
-    position: relative;
-    height: 35px;
-    font-size: 18px;
-    background-color: rgb(171, 171, 247);
-    border: 2px solid rgb(171, 171, 247);;
-}
-
-.btn:active{
-    background-color: rgb(199, 199, 248);
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
-}
-
-.tasks input[type="checkbox"]:checked+label {
+.tasks input[type="checkbox"]:checked+span {
     color: rgb(173, 173, 173);
 }
 
