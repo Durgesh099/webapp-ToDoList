@@ -6,9 +6,9 @@ const Task=()=>{
 
 // ADD & RENDER TASKS ON SCREEN
     const[newState, setState]=useState([
-        {id:1 ,c:true, value:'First Task'},
-        {id:2, c:false, value:'Second Task'},
-        {id:3, c:false, value:'Third Task'}
+        {c:true, value:'First Task'},
+        {c:false, value:'Second Task'},
+        {c:false, value:'Third Task'}
     ])
 
     let str = {}
@@ -19,11 +19,21 @@ const Task=()=>{
     const submitHandler = (event) =>{
         event.preventDefault()
 
+        document.getElementById('input').value = ''
+
         setState( newState.concat(str) )
 
-        document.getElementById('input').value = ''
     }
 
+//Check Task
+    const toggle=(t)=>{
+        return function(){
+            let obj = newState.findIndex((x =>x.value===t.value))
+            newState[obj].c = !t.c
+            const newTask = [...newState]
+            setState(newTask)
+        }
+    }
 
     return(
         <div className="tasks">
@@ -31,7 +41,7 @@ const Task=()=>{
             {newState.map(t=>{
                 return(
                     <React.Fragment>
-                    <h2 className="h2">
+                    <h2 className="h2" onClick={toggle(t)}>
                         <input id='checkbox' type="checkbox" className="cbf" checked={t.c}/>
                         <span className="text">{t.value}</span>
                         {console.log(document.getElementById(''))}
@@ -40,6 +50,7 @@ const Task=()=>{
                 )
             })}
             <InsertBox SubmitHandler={submitHandler} InputHandler={inputHandler}/>
+
         </form>
         </div>
     )
