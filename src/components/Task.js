@@ -2,12 +2,18 @@ import React, { useState } from "react";
 import EditIcon from '@rsuite/icons/Edit'
 import TrashIcon from '@rsuite/icons/Trash';
 import InsertBox from "./InsertBox";
+import Backdrop from "./Backdrop"
+import ReactDOM from "react-dom"
 import './Task.css';
 
+let gObj = {}
 const Edit = ({ color }) => <EditIcon style={{ marginRight:10, color}}/>
 const Delete = ({ color }) => <TrashIcon style={{ marginRight:10, color}} />
 
 const Task=()=>{
+
+    const[show, setShow]=useState(false)
+    const toggle = ()=>setShow(!show)
 
 // ADD & RENDER TASKS ON SCREEN
     const[newState, setState]=useState([
@@ -21,6 +27,11 @@ const Task=()=>{
         str = {c:false,value:event.target.value}
     }
 
+    let estr = ""
+    const ChangeValue = (event)=>{
+        estr = event.target.value
+    }
+
     const submitHandler = (event) =>{
         event.preventDefault()
 
@@ -31,7 +42,7 @@ const Task=()=>{
     }
 
 //Check Task
-    const toggle=(t)=>{
+    const check=(t)=>{
         return function(){
             let obj = newState.findIndex((x =>x.value===t.value))
             newState[obj].c = !t.c
@@ -53,6 +64,20 @@ const del=(t)=>{
     }
 }
 
+//Edit Task
+    const editHandler=(t)=>{
+        return function(){
+            let obj = newState.findIndex((x =>x.value===t.value))
+            newState[obj].value = estr
+            const newTask = [...newState]
+            setState(newTask)
+        }
+    }
+
+    const prevent = (event)=>{
+        event.preventDefault()
+    }
+
     return(
         <div className="tasks">
         <form>
@@ -60,12 +85,16 @@ const del=(t)=>{
                 return(
                     <React.Fragment>
                     <div className="task">
-                        <h2 id="h2_1" className="TaskName" onClick={toggle(t)}>
+                        <h2 id="h2_1" className="TaskName" onClick={check(t)}>
                             <input type="checkbox" className="cbf" checked={t.c} onChange={e => {}}/>
                             <span key={t.id} className="text">{t.value}</span>
                         </h2>
                         <h2 id="h2_2" className="icons">
-                            <Edit color="blue" />
+                            <span onClick={function(){
+                                gObj = t
+                                toggle()
+                            }
+                            }><Edit color="blue"/></span>
                             <span onClick={del(t)}><Delete color="red" onClick={del(t)}/></span>
                         </h2>
                     </div>
@@ -74,6 +103,15 @@ const del=(t)=>{
             })}
             <InsertBox SubmitHandler={submitHandler} InputHandler={inputHandler}/>
 
+            {show && ReactDOM.createPortal(
+                    <form className="modal" onSubmit={prevent}>
+                        <h2>Rename Task</h2>
+                        <input type="text" onChange={ChangeValue}></input>
+                        <button onClick={editHandler(gObj)}>Done</button>
+                        <button onClick={toggle}>CLose</button>
+                    </form>, document.getElementById("modal"))}
+
+            {show && <Backdrop close={toggle}/>}
         </form>
         </div>
     )

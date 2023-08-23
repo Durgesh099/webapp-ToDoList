@@ -41,3 +41,27 @@
     width: 12%;
     margin-block-start: 0.2em;
 }
+
+.modal{
+    height: 160px;
+    width: 70%;
+    background-color: rgb(171, 171, 246);
+    z-index: 2;
+    text-align: center;
+    position: absolute;
+    top: 30%;
+    left: 15%;
+}
+
+.modal input{
+    width: 50%;
+    display: block;
+    margin: 17px auto;
+}
+
+.modal button{
+    margin-left: 10px;
+    height: 30px;
+    background-color: white;
+    border-radius: 10px;
+}
