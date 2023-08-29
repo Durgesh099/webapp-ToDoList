@@ -17,9 +17,8 @@ const Task=()=>{
 
 // ADD & RENDER TASKS ON SCREEN
     const[newState, setState]=useState([
-        {id:1 ,c:true, value:'First Task'},
-        {id:2 ,c:false, value:'Second Task'},
-        {id:3 ,c:false, value:'Third Task'}
+        {id:1 ,c:true, value:'Sample Task 1'},
+        {id:2 ,c:false, value:'Sample Task 2'}
     ])
 
     let str = {}

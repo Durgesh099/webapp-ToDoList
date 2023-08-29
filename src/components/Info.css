@@ -1,0 +1,13 @@
+.info_div{
+    margin: 10px auto;
+    height: 500px;
+    width: 70%;
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 2px 5px 5px black;
+}
+
+.info_div h2{
+    margin-top: 50px;
+}
