@@ -13,9 +13,9 @@ function App() {
       <Navigation/>
         <Routes>
           
-        <Route exact path="/" element={<Task/>}/>
+        <Route exact path="/webapp-ToDoList" element={<Task/>}/>
 
-        <Route exact path="/info" element={<Info/>}/>
+        <Route exact path="/webapp-ToDoList/info" element={<Info/>}/>
 
         <Route to="/"/>
         </Routes>
