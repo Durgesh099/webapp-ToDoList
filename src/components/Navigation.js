@@ -8,7 +8,6 @@ function Navigation() {
     <div>
       <header className='header'>
         <NavLink className='title'to="/">To Do List</NavLink>
-        <NavLink className='sign-btn' to="/signup" exact><p className='p'>Sign up</p></NavLink>
       </header>
     </div>
   );

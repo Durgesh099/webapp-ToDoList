@@ -17,7 +17,7 @@
 }
 
 .TaskName{
-    width: 88%;
+    width: 83%;
     display: inline-block;
     margin-block-start: 0.2em;
 }
@@ -38,7 +38,7 @@
 
 .icons{
     display: inline-block;
-    width: 12%;
+    width: 17%;
     margin-block-start: 0.2em;
 }
 

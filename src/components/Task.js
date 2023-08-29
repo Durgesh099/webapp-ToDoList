@@ -24,7 +24,7 @@ const Task=()=>{
 
     let str = {}
     const inputHandler = (event)=>{
-        str = {c:false,value:event.target.value}
+        str = {id:Date.now() + Math.random(), c:false,value:event.target.value}
     }
 
     let estr = ""
@@ -44,7 +44,7 @@ const Task=()=>{
 //Check Task
     const check=(t)=>{
         return function(){
-            let obj = newState.findIndex((x =>x.value===t.value))
+            let obj = newState.findIndex((x =>x.id===t.id))
             newState[obj].c = !t.c
             const newTask = [...newState]
             setState(newTask)
@@ -54,7 +54,7 @@ const Task=()=>{
 //Delete Task
 const del=(t)=>{
     return function(){
-        let obj = newState.findIndex((x =>x.value===t.value))
+        let obj = newState.findIndex((x =>x.id===t.id))
         for(let i=obj; i<newState.length-1; i++){
             newState[i]=newState[i+1]
         }
@@ -67,7 +67,7 @@ const del=(t)=>{
 //Edit Task
     const editHandler=(t)=>{
         return function(){
-            let obj = newState.findIndex((x =>x.value===t.value))
+            let obj = newState.findIndex((x =>x.id===t.id))
             newState[obj].value = estr
             const newTask = [...newState]
             setState(newTask)
@@ -87,15 +87,14 @@ const del=(t)=>{
                     <div className="task">
                         <h2 id="h2_1" className="TaskName" onClick={check(t)}>
                             <input type="checkbox" className="cbf" checked={t.c} onChange={e => {}}/>
-                            <span key={t.id} className="text">{t.value}</span>
+                            <span className="text">{t.value}</span>
                         </h2>
                         <h2 id="h2_2" className="icons">
                             <span onClick={function(){
                                 gObj = t
                                 toggle()
-                            }
-                            }><Edit color="blue"/></span>
-                            <span onClick={del(t)}><Delete color="red" onClick={del(t)}/></span>
+                            }}><Edit color="blue"/></span>
+                            <span onClick={del(t)}><Delete color="red"/></span>
                         </h2>
                     </div>
                     </React.Fragment>
