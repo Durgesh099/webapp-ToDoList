@@ -70,6 +70,7 @@ const del=(t)=>{
             newState[obj].value = estr
             const newTask = [...newState]
             setState(newTask)
+            toggle()
         }
     }
 
@@ -106,7 +107,6 @@ const del=(t)=>{
                         <h2>Rename Task</h2>
                         <input type="text" onChange={ChangeValue}></input>
                         <button onClick={editHandler(gObj)}>Done</button>
-                        <button onClick={toggle}>CLose</button>
                     </form>, document.getElementById("modal"))}
 
             {show && <Backdrop close={toggle}/>}
